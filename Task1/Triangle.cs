@@ -10,7 +10,10 @@ namespace Geometry
     {
         double[] angles = new double[3];
         double[] sides = new double[3];
-        
+
+        /// <summary>
+        /// Создать треугольник с помощью 3 сторон
+        /// </summary>
         public Triangle(double[] sides)
         {
             this.sides = sides;
@@ -19,6 +22,9 @@ namespace Geometry
             this.angles[1] = CalculateAngleBeetwenBAndC(this.sides[2], this.sides[0], this.sides[1]);
             this.angles[2] = CalculateAngleBeetwenBAndC(this.sides[0], this.sides[1], this.sides[2]);
         }
+        /// <summary>
+        /// Создать треугольник с помощью 2 сторон и угла между ними
+        /// </summary>
         public Triangle(double[] sides, double angle)
         {
             this.sides[0] = sides[0];
@@ -31,6 +37,9 @@ namespace Geometry
             this.angles[0] = CalculateAngleBeetwenBAndC(this.sides[1], this.sides[2], this.sides[0]);
             this.angles[1] = CalculateAngleBeetwenBAndC(this.sides[2], this.sides[0], this.sides[1]);
         }
+        /// <summary>
+        /// Создать треугольник с помощью 1 стороны и прилигающим к нему 2 углам
+        /// </summary>
         public Triangle(double side, double[] angles)
         {
             this.sides[0] = side;
