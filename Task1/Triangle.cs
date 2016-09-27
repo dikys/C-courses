@@ -11,60 +11,111 @@ namespace Geometry
         double[] angles = new double[3];
         double[] sides = new double[3];
 
-        /// <summary>
-        /// Создать треугольник с помощью 3 сторон
-        /// </summary>
-        public Triangle(double[] sides)
+        public static Triangle CreateTriangleAcrossThreeSides(double side1, double side2, double side3)
         {
-            this.sides = sides;
+            if (side1 <= 0 || side2 <= 0 || side3 <= 0)
+                throw new ArgumentException("Sides should be greater than zero");
+            if((side1 + side2 <= side3)
+                || (side3 + side1 <= side2)
+                || (side2 + side3 <= side1))
+                throw new ArgumentException("Sum two sides should be greater than other side");
 
-            this.angles[0] = CalculateAngleBeetwenBAndC(this.sides[1], this.sides[2], this.sides[0]);
-            this.angles[1] = CalculateAngleBeetwenBAndC(this.sides[2], this.sides[0], this.sides[1]);
-            this.angles[2] = CalculateAngleBeetwenBAndC(this.sides[0], this.sides[1], this.sides[2]);
-        }
-        /// <summary>
-        /// Создать треугольник с помощью 2 сторон и угла между ними
-        /// </summary>
-        public Triangle(double[] sides, double angle)
-        {
-            this.sides[0] = sides[0];
-            this.sides[1] = sides[1];
+            double[] sides = { side1, side2, side3 };
+            double[] angles = new double[3];
 
-            this.angles[2] = angle;
+            angles[0] = CalculateAngleBeetwenSide1AndSide2AndOpossiteSide3(sides[2], sides[1], sides[0]);
+            angles[1] = CalculateAngleBeetwenSide1AndSide2AndOpossiteSide3(sides[2], sides[0], sides[1]);
+            angles[2] = CalculateAngleBeetwenSide1AndSide2AndOpossiteSide3(sides[0], sides[1], sides[2]);
 
-            this.sides[2] = CalculateSideOppositeAngleThCos(this.angles[2], this.sides[0], this.sides[1]);
+            Triangle triangle = new Triangle(sides, angles);
             
-            this.angles[0] = CalculateAngleBeetwenBAndC(this.sides[1], this.sides[2], this.sides[0]);
-            this.angles[1] = CalculateAngleBeetwenBAndC(this.sides[2], this.sides[0], this.sides[1]);
+            return triangle;
         }
-        /// <summary>
-        /// Создать треугольник с помощью 1 стороны и прилигающим к нему 2 углам
-        /// </summary>
-        public Triangle(double side, double[] angles)
-        {
-            this.sides[0] = side;
 
-            this.angles[2] = angles[0];
-            this.angles[1] = angles[1];
-            this.angles[0] = Math.PI - this.angles[1] - this.angles[2];
+        public static Triangle CreateTriangleAcrossTwoSidesAndAngleBeetwen(double side1, double side2, double angle)
+        {
+            if (side1 <= 0 || side2 <= 0 || angle <= 0)
+                throw new ArgumentException("Angle and sides should not be less and equal zero");
+            if (angle >= Math.PI)
+                throw new ArgumentException("Angle should not be greater or equal PI");
 
-            this.sides[1] = CalculateSideOppositeAngleThSin(this.angles[1], this.sides[0], this.angles[0]);
-            this.sides[2] = CalculateSideOppositeAngleThSin(this.angles[2], this.sides[0], this.angles[0]);
+            double[] sides = new double[3];
+            double[] angles = new double[3];
+
+            sides[0] = side1;
+            sides[1] = side2;
+
+            angles[2] = angle;
+
+            sides[2] = CalculateSideOppositeAngleBeetwenTwoSides(angles[2], sides[0], sides[1]);
+
+            angles[0] = CalculateAngleBeetwenSide1AndSide2AndOpossiteSide3(sides[1], sides[2], sides[0]);
+            angles[1] = CalculateAngleBeetwenSide1AndSide2AndOpossiteSide3(sides[2], sides[0], sides[1]);
+
+            Triangle triangle = new Triangle(sides, angles);
+
+            return triangle;
         }
-        
-        double CalculateAngleBeetwenBAndC(double b, double c, double a)
+
+        public static Triangle CreateTriangleAcrossSideAndAdjacentAngles(double side, double angle1, double angle2)
         {
-            return Math.Acos((b * b + c * c - a * a) / (2 * b * c));
+            if (side <= 0 || angle1 <= 0 || angle2 <= 0)
+                throw new ArgumentException("Side and angles should not be less or equal zero");
+            if (angle1 + angle2 >= Math.PI)
+                throw new ArgumentException("Sum angles should not be greater than PI");
+
+            double[] sides = new double[3];
+            double[] angles = new double[3];
+
+            sides[0] = side;
+
+            angles[2] = angle1;
+            angles[1] = angle2;
+            angles[0] = Math.PI - angles[1] - angles[2];
+
+            sides[1] = CalculateSideOppositeAngleAndWithAdjacentSide1AndItOppositeAngle1(angles[1], sides[0], angles[0]);
+            sides[2] = CalculateSideOppositeAngleAndWithAdjacentSide1AndItOppositeAngle1(angles[2], sides[0], angles[0]);
+
+            Triangle triangle = new Triangle(sides, angles);
+
+            return triangle;
         }
-        // angle beetwen b and c
-        double CalculateSideOppositeAngleThCos(double angle, double b, double c)
+
+        static double CalculateAngleBeetwenSide1AndSide2AndOpossiteSide3(double side1, double side2, double side3)
         {
-            return Math.Sqrt(b * b + c * c - 2 * b * c * Math.Cos(angle));
+            return Math.Acos((side1 * side1 + side2 * side2 - side3 * side3) / (2 * side1 * side2));
         }
-        // sideA - adjacent side, angleA - angle opposite sideA
-        double CalculateSideOppositeAngleThSin(double angle, double sideA, double angleA)
+
+        static double CalculateSideOppositeAngleBeetwenTwoSides(double angle, double side1, double side2)
         {
-            return sideA * Math.Sin(angle) / Math.Sin(angleA);
+            return Math.Sqrt(side1 * side1 + side2 * side2 - 2 * side1 * side2 * Math.Cos(angle));
+        }
+
+        static double CalculateSideOppositeAngleAndWithAdjacentSide1AndItOppositeAngle1(double angle, double side1, double angle1)
+        {
+            return side1 * Math.Sin(angle) / Math.Sin(angle1);
+        }
+
+        public Triangle(double[] sides, double[] angles)
+        {
+            if (sides == null || angles == null)
+                throw new ArgumentNullException("Sides and angles should not be null");
+            if (sides.Length != 3 || angles.Length != 3)
+                throw new ArgumentException("Count sides and angles should be equal three");
+            for (int i = 0; i < 3; i++)
+            {
+                if (sides[i] <= 0 || angles[i] <= 0)
+                    throw new ArgumentException("Side or angle should not be less or equal zero");
+            }
+            if (Math.Abs(angles[0] + angles[1] + angles[2] - Math.PI) > 0.0001)
+                throw new ArgumentException("Sum angles should be equal PI");
+            if ((sides[0] + sides[1] <= sides[2])
+                || (sides[2] + sides[0] <= sides[1])
+                || (sides[1] + sides[2] <= sides[0]))
+                throw new ArgumentException("Sum two sides should be greater than other side");
+
+            this.sides = sides;
+            this.angles = angles;
         }
 
         public double GetSquare()

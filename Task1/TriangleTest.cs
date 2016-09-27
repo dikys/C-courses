@@ -6,69 +6,128 @@ namespace Geometry.Test
     [TestClass]
     public class TriangleTest
     {
-        double tolerance = 0.0001;
+        static double tolerance = 0.0001;
 
-        double[] sidesRightTriangle = new double[] { 3, 4, 5 };
-        double[] anglesRightTriangle = new double[] { Math.Asin(0.6), Math.Asin(0.8), Math.PI / 2 };
-        double squareRightTriangle = 6;
-
-        double[] sidesObtuseTriangle = new double[] { 9, 5, 6 };
-        double[] anglesObtuseTriangle = new double[] { 1.910633, 0.551285, 0.679673 };
-        double squareObtuseTriangle = 14.142135;
-
-        double[] sidesAcuteTriangle = new double[] { 4, 5, 6 };
-        double[] anglesAcuteTriangle = new double[] { 0.722734, 0.973389, 1.445468 };
-        double squareAcuteTriangle = 9.921567;
-
-        void CheckTriangle(Triangle triangle, double[] expectedSides, double[] expectedAngles, double expectedSquare)
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Constructor_SidesOrAnglesIsNull_ArgumentNullException()
         {
-            for (int i = 0; i < 3; i++)
-            {
-                Assert.IsTrue(Math.Abs(triangle.GetSides()[i] - expectedSides[i]) < tolerance);
-                Assert.IsTrue(Math.Abs(triangle.GetAngles()[i] - expectedAngles[i]) < tolerance);
-            }
-
-            Assert.IsTrue(Math.Abs(triangle.GetSquare() - expectedSquare) < tolerance);
+            Triangle triangle = new Triangle(null, null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Constructor_CountSidesOrAnglesNotEqualThree_ArgumentException()
+        {
+            Triangle triangle = new Triangle(new double[2] { 1, 2 }, new double[4] { 1, 2, 3, 4 });
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Constructor_SideOrAngleLessOrEqualZero_ArgumentException()
+        {
+            Triangle triangle = new Triangle(new double[3] { -1, 0, -2 }, new double[3] { 0, -3, -1 });
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Constructor_SumAnglesNotEqualPI_ArgumentException()
+        {
+            Triangle triangle = new Triangle(new double[3] { 3, 4, 5 }, new double[3] { Math.PI, 1, 1 });
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Constructor_SumTwoSideLessOrEqualOtherSide_ArgumentException()
+        {
+            Triangle triangle = new Triangle(new double[3] { 3, 4, 10 }, new double[3] { Math.PI / 3, Math.PI / 3, Math.PI / 3 });
         }
 
         [TestMethod]
-        public void InitializationTriangleAcrossThreeSides()
+        public void CreateTriangleAcrossThreeSides_EqualSides_EquilateralTriangle()
         {
-            Triangle triangle = new Triangle(sidesRightTriangle);
-            CheckTriangle(triangle, sidesRightTriangle, anglesRightTriangle, squareRightTriangle);
+            Triangle triangle = Triangle.CreateTriangleAcrossThreeSides(100, 100, 100);
+            double[] sidesTriangle = triangle.GetSides();
+            double[] anglesTriangle = triangle.GetAngles();
 
-            triangle = new Triangle(sidesObtuseTriangle);
-            CheckTriangle(triangle, sidesObtuseTriangle, anglesObtuseTriangle, squareObtuseTriangle);
-
-            triangle = new Triangle(sidesAcuteTriangle);
-            CheckTriangle(triangle, sidesAcuteTriangle, anglesAcuteTriangle, squareAcuteTriangle);
+            Assert.IsTrue(sidesTriangle[0] == sidesTriangle[1] && sidesTriangle[1] == sidesTriangle[2]);
+            Assert.IsTrue(anglesTriangle[0] == anglesTriangle[1] && anglesTriangle[1] == anglesTriangle[2]);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateTriangleAcrossThreeSides_SideLessOrEqualZero_ArgumentException()
+        {
+            Triangle triangle = Triangle.CreateTriangleAcrossThreeSides(-1, -1, -1);
+            Triangle triangle2 = Triangle.CreateTriangleAcrossThreeSides(0, 0, 0);
+            Triangle triangle3 = Triangle.CreateTriangleAcrossThreeSides(0, -1, 0);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateTriangleAcrossThreeSides_SumTwoSideLessOrEqualOtherSide_ArgumentException()
+        {
+            Triangle triangle = Triangle.CreateTriangleAcrossThreeSides(5, 1, 1);
+            Triangle triangle2 = Triangle.CreateTriangleAcrossThreeSides(2, 4, 2);
+            Triangle triangle3 = Triangle.CreateTriangleAcrossThreeSides(2, 3, 5);
         }
 
         [TestMethod]
-        public void InitializationTriangleAcrossTwoSidesAndAngle()
+        public void CreateTriangleAcrossTwoSidesAndAngleBeetwen_RightAngle_RightTriangle()
         {
-            Triangle triangle = new Triangle(new double[] { sidesRightTriangle[0], sidesRightTriangle[1] }, anglesRightTriangle[2]);
-            CheckTriangle(triangle, sidesRightTriangle, anglesRightTriangle, squareRightTriangle);
-
-            triangle = new Triangle(new double[] { sidesObtuseTriangle[0], sidesObtuseTriangle[1] }, anglesObtuseTriangle[2]);
-            CheckTriangle(triangle, sidesObtuseTriangle, anglesObtuseTriangle, squareObtuseTriangle);
-
-            triangle = new Triangle(new double[] { sidesAcuteTriangle[0], sidesAcuteTriangle[1] }, anglesAcuteTriangle[2]);
-            CheckTriangle(triangle, sidesAcuteTriangle, anglesAcuteTriangle, squareAcuteTriangle);
+            Triangle triangle = Triangle.CreateTriangleAcrossTwoSidesAndAngleBeetwen(3, 4, Math.PI / 2);
+            double[] sidesTriangle = triangle.GetSides();
+            double[] anglesTriangle = triangle.GetAngles();
+            
+            Assert.IsTrue(Math.Abs(Math.Pow(sidesTriangle[0], 2) + Math.Pow(sidesTriangle[1], 2) - Math.Pow(sidesTriangle[2], 2)) <= tolerance
+                || Math.Abs(Math.Pow(sidesTriangle[2], 2) + Math.Pow(sidesTriangle[0], 2) - Math.Pow(sidesTriangle[1], 2)) <= tolerance
+                || Math.Abs(Math.Pow(sidesTriangle[1], 2) + Math.Pow(sidesTriangle[0], 2) - Math.Pow(sidesTriangle[0], 2)) <= tolerance);
+            Assert.IsTrue(Math.Abs(Math.Atan(3.0 / 4) - anglesTriangle[0]) <= tolerance
+                || Math.Abs(Math.Atan(3.0 / 4) - anglesTriangle[1]) <= tolerance
+                || Math.Abs(Math.Atan(3.0 / 4) - anglesTriangle[2]) <= tolerance);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateTriangleAcrossTwoSidesAndAngleBeetwen_SideOrAngleLessOrEqualZero_ArgumentException()
+        {
+            Triangle triangle = Triangle.CreateTriangleAcrossTwoSidesAndAngleBeetwen(-1, -1, -1);
+            Triangle triangle2 = Triangle.CreateTriangleAcrossTwoSidesAndAngleBeetwen(0, 0, 0);
+            Triangle triangle3 = Triangle.CreateTriangleAcrossTwoSidesAndAngleBeetwen(0, -1, 0);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateTriangleAcrossTwoSidesAndAngleBeetwen_AngleGreaterOrEqualPi_ArgumentException()
+        {
+            Triangle triangle = Triangle.CreateTriangleAcrossTwoSidesAndAngleBeetwen(1, 2, Math.PI);
+            Triangle triangle2 = Triangle.CreateTriangleAcrossTwoSidesAndAngleBeetwen(1, 2, Math.PI + 1);
         }
 
         [TestMethod]
-        public void InitializationTriangleAcrossSideAndTwoAngle()
+        public void CreateTriangleAcrossSideAndAdjacentAngles_EqualAngles_IsoscelesTriangle()
         {
-            Triangle triangle = new Triangle(sidesRightTriangle[0], new double[] { anglesRightTriangle[2], anglesRightTriangle[1] });
-            CheckTriangle(triangle, sidesRightTriangle, anglesRightTriangle, squareRightTriangle);
+            Triangle triangle = Triangle.CreateTriangleAcrossSideAndAdjacentAngles(5, Math.PI / 6, Math.PI / 6);
+            double[] sidesTriangle = triangle.GetSides();
 
-            triangle = new Triangle(sidesObtuseTriangle[0], new double[] { anglesObtuseTriangle[2], anglesObtuseTriangle[1] });
-            CheckTriangle(triangle, sidesObtuseTriangle, anglesObtuseTriangle, squareObtuseTriangle);
-
-            triangle = new Triangle(sidesAcuteTriangle[0], new double[] { anglesAcuteTriangle[2], anglesAcuteTriangle[1] });
-            CheckTriangle(triangle, sidesAcuteTriangle, anglesAcuteTriangle, squareAcuteTriangle);
+            Assert.IsTrue(Math.Abs(sidesTriangle[0] - sidesTriangle[1]) <= tolerance
+                || Math.Abs(sidesTriangle[0] - sidesTriangle[2]) <= tolerance
+                || Math.Abs(sidesTriangle[1] - sidesTriangle[2]) <= tolerance);
         }
-        
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateTriangleAcrossSideAndAdjacentAngles_SideOrAngleLessOrEqualZero_ArgumentException()
+        {
+            Triangle triangle = Triangle.CreateTriangleAcrossSideAndAdjacentAngles(-1, -1, -1);
+            Triangle triangle2 = Triangle.CreateTriangleAcrossSideAndAdjacentAngles(0, 0, 0);
+            Triangle triangle3 = Triangle.CreateTriangleAcrossSideAndAdjacentAngles(0, -1, 0);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateTriangleAcrossSideAndAdjacentAngles_SumAnglesGreaterOrEqualThanPi_ArgumentException()
+        {
+            Triangle trianlge = Triangle.CreateTriangleAcrossSideAndAdjacentAngles(5, Math.PI / 2, Math.PI / 2);
+            Triangle trianlge2 = Triangle.CreateTriangleAcrossSideAndAdjacentAngles(5, Math.PI, Math.PI / 2);
+        }
+
+        [TestMethod]
+        public void GetSquare_EgyptianTriangle_Six()
+        {
+            Triangle triangle = Triangle.CreateTriangleAcrossThreeSides(3, 4, 5);
+
+            Assert.IsTrue(Math.Abs(6 - triangle.GetSquare()) <= tolerance);
+        }
     }
 }
