@@ -1,0 +1,16 @@
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\Task 1\bin\Debug\Task 1.exe.config
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\Task 1\bin\Debug\Task 1.exe
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\Task 1\bin\Debug\Task 1.pdb
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\Task 1\obj\Debug\Task 1.csprojResolveAssemblyReference.cache
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\Task 1\obj\Debug\Task 1.exe
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\Task 1\obj\Debug\Task 1.pdb
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\Task 1\bin\Debug\ClassLibrary1.dll
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\Task 1\bin\Debug\ClassLibrary1.pdb
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\bin\Debug\Task 1.exe.config
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\obj\Debug\Task 1.exe
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\obj\Debug\Task 1.pdb
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\bin\Debug\Task 1.exe
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\bin\Debug\Task 1.pdb
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\bin\Debug\Geometry.dll
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\bin\Debug\Geometry.pdb
+C:\Users\Вадим\Desktop\C#\Task 1\Task 1\obj\Debug\Task 1.csprojResolveAssemblyReference.cache

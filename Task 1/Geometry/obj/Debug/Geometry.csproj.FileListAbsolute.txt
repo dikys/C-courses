@@ -1,0 +1,5 @@
+C:\Users\Вадим\Desktop\C#\Task 1\Geometry\bin\Debug\Geometry.dll
+C:\Users\Вадим\Desktop\C#\Task 1\Geometry\bin\Debug\Geometry.pdb
+C:\Users\Вадим\Desktop\C#\Task 1\Geometry\obj\Debug\Geometry.csprojResolveAssemblyReference.cache
+C:\Users\Вадим\Desktop\C#\Task 1\Geometry\obj\Debug\Geometry.dll
+C:\Users\Вадим\Desktop\C#\Task 1\Geometry\obj\Debug\Geometry.pdb
