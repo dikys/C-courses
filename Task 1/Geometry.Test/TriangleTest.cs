@@ -45,10 +45,7 @@ namespace Geometry.Test
             Triangle triangle = Triangle.CreateByThreeSides(100, 100, 100);
             double[] sidesTriangle = triangle.GetSides();
             double[] anglesTriangle = triangle.GetAngles();
-
-            // Можно и так, но там в методе написано, что первое значение это ожидаемое, а второе полученное
-            // Шутка
-            // А мы тут вилкой людей убиваем, не спорю, что красиво)) Жаль что вилку для этого придумали.
+            
             Assert.AreEqual(sidesTriangle[0], sidesTriangle[1], tolerance);
             Assert.AreEqual(sidesTriangle[1], sidesTriangle[2], tolerance);
             
