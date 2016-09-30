@@ -79,12 +79,8 @@ namespace Geometry.Test
             double[] sidesTriangle = triangle.GetSides();
             double[] anglesTriangle = triangle.GetAngles();
             
-            Assert.IsTrue(Math.Abs(Math.Pow(sidesTriangle[0], 2) + Math.Pow(sidesTriangle[1], 2) - Math.Pow(sidesTriangle[2], 2)) <= tolerance
-                || Math.Abs(Math.Pow(sidesTriangle[2], 2) + Math.Pow(sidesTriangle[0], 2) - Math.Pow(sidesTriangle[1], 2)) <= tolerance
-                || Math.Abs(Math.Pow(sidesTriangle[1], 2) + Math.Pow(sidesTriangle[0], 2) - Math.Pow(sidesTriangle[0], 2)) <= tolerance);
-            Assert.IsTrue(Math.Abs(Math.Atan(3.0 / 4) - anglesTriangle[0]) <= tolerance
-                || Math.Abs(Math.Atan(3.0 / 4) - anglesTriangle[1]) <= tolerance
-                || Math.Abs(Math.Atan(3.0 / 4) - anglesTriangle[2]) <= tolerance);
+            Assert.IsTrue(Math.Abs(Math.Pow(sidesTriangle[0], 2) + Math.Pow(sidesTriangle[1], 2) - Math.Pow(sidesTriangle[2], 2)) <= tolerance);
+            Assert.IsTrue(Math.Abs(Math.Atan(3.0 / 4) - anglesTriangle[0]) <= tolerance);
         }
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
@@ -108,9 +104,7 @@ namespace Geometry.Test
             Triangle triangle = Triangle.CreateBySideAndTwoAngles(5, Math.PI / 6, Math.PI / 6);
             double[] sidesTriangle = triangle.GetSides();
             
-            Assert.IsTrue(Math.Abs(sidesTriangle[0] - sidesTriangle[1]) <= tolerance
-                || Math.Abs(sidesTriangle[0] - sidesTriangle[2]) <= tolerance
-                || Math.Abs(sidesTriangle[1] - sidesTriangle[2]) <= tolerance);
+            Assert.IsTrue(Math.Abs(sidesTriangle[1] - sidesTriangle[2]) <= tolerance);
         }
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
