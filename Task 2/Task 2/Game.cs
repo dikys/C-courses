@@ -66,7 +66,7 @@ namespace Task_2
             }
         }
 
-        public Location GetLocation(int value)
+        public virtual Location GetLocation(int value)
         {
             if (!IsCorrectValue(value))
                 throw new ArgumentException("Cells should have value from 0 to " + (this.fieldSize - 1) + "!");

@@ -18,7 +18,28 @@ namespace Task_2
         public MutableGame(int[] cells, int[] shiftHistory) : base(cells)
         {
             this.shiftHistory = shiftHistory;
-        } 
+        }
+
+        public override Location GetLocation(int value)
+        {
+            int[] cells = new int[this.fieldSize];
+            for (int x = 0; x < this.field.GetLength(0); x++)
+            {
+                for (int y = 0; y < this.field.GetLength(1); y++)
+                {
+                    cells[x * this.field.GetLength(0) + y] = this.field[x, y];
+                }
+            }
+
+            Game game = new Game(cells);
+
+            for (int i = 0; i < this.shiftHistory.Length; i++)
+            {
+                game.Shift(this.shiftHistory[i]);
+            }
+
+            return game.GetLocation(value);
+        }
 
         public new MutableGame Shift(int value)
         {

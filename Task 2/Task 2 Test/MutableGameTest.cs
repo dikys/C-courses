@@ -27,7 +27,18 @@ namespace Task_2_Test
 
             for (int i = 0; i < 9; i++)
             {
-                Assert.AreEqual(gameBefore.GetLocation(i), gameAfter.GetLocation(i));
+                if (i == 0)
+                {
+                    Assert.AreEqual(gameBefore.GetLocation(i), gameAfter.GetLocation(1));
+                }
+                else if (i == 1)
+                {
+                    Assert.AreEqual(gameBefore.GetLocation(i), gameAfter.GetLocation(0));
+                }
+                else
+                {
+                    Assert.AreEqual(gameBefore.GetLocation(i), gameAfter.GetLocation(i));
+                }
             }
         }
     }
