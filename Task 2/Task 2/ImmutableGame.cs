@@ -15,7 +15,7 @@ namespace Task_2
         public new ImmutableGame Shift(int value)
         {
             if (value == 0 || !IsCorrectValue(value))
-                throw new ArgumentException("Zero can't move. Value should be from 1 to " + (this.fieldSize - 1));
+                throw new ArgumentException("Value should be from 1 to " + (this.fieldSize - 1));
 
             Location valueLocation = GetLocation(value);
             Location zeroLocation = GetLocation(0);

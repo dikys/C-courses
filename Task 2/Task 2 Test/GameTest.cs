@@ -7,19 +7,19 @@ namespace Task_2_Test
     [TestClass]
     public class GameTest
     {
-        public static Game InitilizationCorrectGame()
+        public Game InitilizationCorrectGame()
         {
             return new Game(0, 1, 2, 3, 4, 5, 6, 7, 8);
         }
-
-        public static Game InitilizationGame(params int[] cells)
+        
+        public Game InitilizationGame(params int[] cells)
         {
             return new Game(cells);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Should_ThrowArgumentException_When_CountFieldsNotEqual4or9or16()
+        public void Should_ThrowArgumentException_When_CountFieldsIsNotPerfectSquare()
         {
             var game = InitilizationGame(1, 0);
             game = InitilizationGame(1, 2, 0);
@@ -70,7 +70,7 @@ namespace Task_2_Test
         }
 
         [TestMethod]
-        public virtual void CheckWork_Shift()
+        public virtual void Should_CorrectValuesLocation_When_AppliedShift()
         {
             var gameBefore = InitilizationCorrectGame();
             var gameAfter = InitilizationCorrectGame();
@@ -95,7 +95,7 @@ namespace Task_2_Test
         }
 
         [TestMethod]
-        public void CheckWork_Indexer()
+        public void Should_RealValueEqualResultIndexerFromItValueLocation_When_GameIsCorrect()
         {
             var game = InitilizationCorrectGame();
 
@@ -109,7 +109,34 @@ namespace Task_2_Test
         }
 
         [TestMethod]
-        public virtual void CheckWork_GetLocation()
+        public virtual void Should_RealValueEqualResultIndexerFromItValueLocation_When_AppliedShift()
+        {
+            var game = InitilizationCorrectGame();
+
+            game.Shift(1);
+
+            for (int x = 0; x < 3; x++)
+            {
+                for (int y = 0; y < 3; y++)
+                {
+                    int value = x * 3 + y;
+
+                    if (value == 0)
+                    {
+                        value = 1;
+                    }
+                    else if (value == 1)
+                    {
+                        value = 0;
+                    }
+
+                    Assert.AreEqual(value, game[x, y]);
+                }
+            }
+        }
+
+        [TestMethod]
+        public virtual void Should_RealValuesLocationEqualResultGetLocationFromItValue_When_GameIsCorrect()
         {
             var game = InitilizationCorrectGame();
 
@@ -119,6 +146,35 @@ namespace Task_2_Test
                 {
                     Assert.AreEqual(x, game.GetLocation(x * 3 + y).X);
                     Assert.AreEqual(y, game.GetLocation(x * 3 + y).Y);
+                }
+            }
+        }
+
+        [TestMethod]
+        public virtual void Should_RealValuesLocationEqualResultGetLocationFromItValue_When_AppliedShift()
+        {
+            var game = InitilizationCorrectGame();
+
+            game.Shift(1);
+
+            for (int x = 0; x < 3; x++)
+            {
+                for (int y = 0; y < 3; y++)
+                {
+                    int value = x * 3 + y;
+                    Location valueLocation = game.GetLocation(value);
+
+                    if (value == 0)
+                    {
+                        valueLocation = game.GetLocation(1);
+                    }
+                    else if (value == 1)
+                    {
+                        valueLocation = game.GetLocation(0);
+                    }
+
+                    Assert.AreEqual(x, valueLocation.X);
+                    Assert.AreEqual(y, valueLocation.Y);
                 }
             }
         }

@@ -43,7 +43,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="ImmutableGame.cs" />
     <Compile Include="Location.cs" />
-    <Compile Include="MutableGame.cs" />
+    <Compile Include="GameWithShiftHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

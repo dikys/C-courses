@@ -8,27 +8,13 @@ namespace Task_2
 {
     public struct Location
     {
-        int x;
-        public int X
-        {
-            get
-            {
-                return this.x;
-            }
-        }
-        int y;
-        public int Y
-        {
-            get
-            {
-                return this.y;
-            }
-        }
+        public readonly int X;
+        public readonly int Y;
 
-        public Location (int x, int y)
+        public Location (int X, int Y)
         {
-            this.x = x;
-            this.y = y; 
+            this.X = X;
+            this.Y = Y; 
         }
     }
 }

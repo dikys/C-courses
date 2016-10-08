@@ -10,13 +10,12 @@ namespace Task_2
     {
         protected readonly int[,] field;
         protected readonly int fieldSize;
-
         protected readonly Location[] valuesLocation;
 
         public Game(params int[] cells)
         {
-            if (cells.Length != 4 && cells.Length != 9 && cells.Length != 16)
-                throw new ArgumentException("Count fields should be 4 or 9 or 16!");
+            if (cells.Length != (int)Math.Pow((int) Math.Sqrt(cells.Length), 2))
+                throw new ArgumentException("Count should be perfect square!");
 
             this.fieldSize = cells.Length;
 
@@ -57,8 +56,8 @@ namespace Task_2
                 }
             }
         }
-
-        public int this[int x, int y]
+        
+        public virtual int this[int x, int y]
         {
             get
             {
@@ -77,7 +76,7 @@ namespace Task_2
         public void Shift(int value)
         {
             if (value == 0 || !IsCorrectValue(value))
-                throw new ArgumentException("Zero can't move. Value should be from 1 to " + (this.fieldSize - 1));
+                throw new ArgumentException("Value should be from 1 to " + (this.fieldSize - 1));
 
             Location valueLocation = GetLocation(value);
             Location zeroLocation = GetLocation(0);
@@ -87,7 +86,7 @@ namespace Task_2
 
             this.valuesLocation[0] = valueLocation;
             this.valuesLocation[value] = zeroLocation;
-            
+
             this.field[zeroLocation.X, zeroLocation.Y] = value;
             this.field[valueLocation.X, valueLocation.Y] = 0;
         }

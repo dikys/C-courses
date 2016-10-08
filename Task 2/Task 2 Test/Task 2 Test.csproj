@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="GameTest.cs" />
     <Compile Include="ImmutableGameTest.cs" />
-    <Compile Include="MutableGameTest.cs" />
+    <Compile Include="GameWithShiftHistoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
