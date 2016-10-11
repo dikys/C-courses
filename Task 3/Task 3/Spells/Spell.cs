@@ -14,8 +14,5 @@ namespace Task_3.Spells
         public string Description { private set; get; }
         public double Cost { private set; get; }
         public double Cooldown { private set; get; }
-        public double Duration { private set; get; }
-        
-        public abstract bool Apply(ICharacter target);
     }
 }
