@@ -13,11 +13,7 @@ namespace Task_3.Character
     {
         List<ICharacteristic> characteristics;
         List<ISpell> spells;
-        List<ISpell> appliedSpells;
+        List<IBuff> appliedBuff;
 
-        public void ApplySpell(ISpell spell)
-        {
-            this.appliedSpells.Add(spell);
-        }
     }
 }
