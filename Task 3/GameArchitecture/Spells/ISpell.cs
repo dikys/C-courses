@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task_3.Characteristics
+namespace GameArchitecture.Spells
 {
-    public interface ICharacteristic
+    public interface ISpell
     {
     }
 }

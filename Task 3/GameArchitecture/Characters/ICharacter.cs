@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Task_3.Character;
-
-namespace Task_3.Spells
+namespace GameArchitecture.Characters
 {
-    public interface ISpell
+    public interface ICharacter
     {
-       
     }
 }
