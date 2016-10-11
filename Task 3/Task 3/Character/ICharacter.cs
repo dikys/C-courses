@@ -11,5 +11,6 @@ namespace Task_3.Character
 {
     public interface ICharacter
     {
+        public void ApplySpell(ISpell spell);
     }
 }
