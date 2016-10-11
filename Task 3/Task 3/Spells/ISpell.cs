@@ -10,6 +10,6 @@ namespace Task_3.Spells
 {
     public interface ISpell
     {
-        bool Apply(ICharacter target);
+       
     }
 }
