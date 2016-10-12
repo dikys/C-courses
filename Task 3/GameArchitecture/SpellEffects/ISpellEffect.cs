@@ -5,10 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using GameArchitecture;
+
 namespace GameArchitecture.SpellEffects
 {
-    public interface ISpellEffect
+    public interface ISpellEffect : IUpdatableObject
     {
         void Apply(ICharacter character);
+
+        bool IsEnded();
     }
 }

@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using GameArchitecture;
+
 namespace GameArchitecture.Characters
 {
-    public interface ICharacter
+    public interface ICharacter : IUpdatableObject
     {
     }
 }

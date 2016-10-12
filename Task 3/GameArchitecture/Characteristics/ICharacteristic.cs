@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameArchitecture.Characteristics
 {
-    public interface ICharacteristic
+    public interface ICharacteristic : IUpdatableObject
     {
     }
 }

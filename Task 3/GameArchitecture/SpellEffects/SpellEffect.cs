@@ -15,6 +15,18 @@ namespace GameArchitecture.SpellEffects
 
         public double Duration { private set; get; }
 
+        public double currentDuration;
+
         public abstract void Apply(ICharacter character);
+
+        public void Update(double dt)
+        {
+            this.currentDuration -= dt;
+        }
+
+        public bool IsEnded()
+        {
+            return (this.currentDuration <= 0);
+        }
     }
 }

@@ -10,7 +10,9 @@ namespace GameArchitecture.Characteristics
     {
         public string Name { private set; get; }
         public string Description { private set; get; }
-
+        
         public T Value { set; get; }
+
+        public abstract void Update(double dt);
     }
 }

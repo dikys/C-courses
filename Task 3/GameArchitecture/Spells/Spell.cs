@@ -17,5 +17,18 @@ namespace GameArchitecture.Spells
         public double Cooldown { private set; get; }
 
         public SpellEffect Effect { private set; get; }
+
+        private double currentCooldown = 0;
+
+        public void Update(double dt)
+        {
+            if (currentCooldown == 0)
+                return;
+
+            currentCooldown -= dt;
+
+            if (currentCooldown < 0)
+                currentCooldown = 0;
+        }
     }
 }

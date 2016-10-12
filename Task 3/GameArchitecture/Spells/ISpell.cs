@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameArchitecture.Spells
 {
-    public interface ISpell
+    public interface ISpell : IUpdatableObject
     {
     }
 }

@@ -19,5 +19,24 @@ namespace GameArchitecture.Characters
         public ISpell[] Spells { private set; get; }
 
         public List<ISpellEffect> AppliedEffects { private set; get; }
+
+        public void Update(double dt)
+        {
+            for (int i = 0; i < Characteristics.Length; i++)
+                Characteristics[i].Update(dt);
+            for (int i = 0; i < Spells.Length; i++)
+                Spells[i].Update(dt);
+            for (int i = 0; i < AppliedEffects.Count; i++)
+            {
+                AppliedEffects[i].Update(dt);
+
+                if (AppliedEffects[i].IsEnded())
+                {
+                    AppliedEffects.RemoveAt(i);
+
+                    i--;
+                }
+            }
+        }
     }
 }
