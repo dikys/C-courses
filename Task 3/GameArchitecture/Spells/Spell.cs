@@ -16,7 +16,7 @@ namespace GameArchitecture.Spells
         public double Cost { private set; get; }
         public double Cooldown { private set; get; }
 
-        public SpellEffect Effect { private set; get; }
+        public SpellEffect[] Effects { private set; get; }
 
         private double currentCooldown = 0;
 

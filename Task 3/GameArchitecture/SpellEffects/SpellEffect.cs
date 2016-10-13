@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using GameArchitecture.Characters;
+using GameArchitecture.Characteristics;
 
 namespace GameArchitecture.SpellEffects
 {
@@ -18,6 +19,8 @@ namespace GameArchitecture.SpellEffects
         public double currentDuration;
 
         public abstract void Apply(ICharacter character);
+
+        public abstract void DoEffect(ICharacteristic[] characteristics);
 
         public void Update(double dt)
         {

@@ -14,8 +14,24 @@ namespace GameArchitecture.Characters
     {
         public string Name { private set; get; }
         public string Description { private set; get; }
+        
+        public ICharacteristic[] Characteristics
+        {
+            private set { }
+            get
+            {
+                ICharacteristic[] result = new ICharacteristic[this.Characteristics.Length];
 
-        public ICharacteristic[] Characteristics { private set; get; }
+                this.Characteristics.CopyTo(result, 0);
+
+                foreach (var spellEffect in this.AppliedEffects)
+                {
+                    spellEffect.DoEffect(result);
+                }
+
+                return result;
+            }
+        }
         public ISpell[] Spells { private set; get; }
 
         public List<ISpellEffect> AppliedEffects { private set; get; }

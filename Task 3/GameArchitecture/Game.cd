@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="GameArchitecture.Characters.Character">
-    <Position X="7" Y="2.25" Width="1.5" />
+    <Position X="9.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAgAAAACACAAAQAAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>Characters\Character.cs</FileName>
@@ -9,9 +9,9 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="GameArchitecture.SpellEffects.SpellEffect">
-    <Position X="4.5" Y="3.5" Width="1.5" />
+    <Position X="7.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAABAiBAAAAAAAAAQAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAEAAAABAiBAAAAAAAAAQAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SpellEffects\SpellEffect.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -26,20 +26,21 @@
   <Class Name="GameArchitecture.Spells.Spell">
     <Position X="0.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAIggAAAAAAAAABQAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAIAgAAAAAAQAABQAAAAAAAAgAAAAAAAAAAA=</HashCode>
       <FileName>Spells\Spell.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="GameArchitecture.Spells.SpellOnTarget">
+  <Class Name="GameArchitecture.Spells.SpellOnTargets">
     <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Spells\SpellOnTarget.cs</FileName>
+      <FileName>Spells\SpellOnTargets.cs</FileName>
+      <NewMemberFileName>Spells\SpellOnTarget.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GameArchitecture.Characteristics.Characteristic&lt;T&gt;">
-    <Position X="9.5" Y="1.75" Width="1.5" />
+  <Class Name="GameArchitecture.Characteristics.Characteristic&lt;TValue&gt;">
+    <Position X="11.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Characteristics\Characteristic.cs</FileName>
@@ -54,21 +55,21 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="GameArchitecture.SpellEffects.ISpellEffect">
-    <Position X="4.5" Y="1.75" Width="1.5" />
+    <Position X="6" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAEAAAABAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SpellEffects\ISpellEffect.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="GameArchitecture.Characters.ICharacter" Collapsed="true">
-    <Position X="7" Y="1.25" Width="1.5" />
+    <Position X="9.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Characters\ICharacter.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="GameArchitecture.Characteristics.ICharacteristic" Collapsed="true">
-    <Position X="9.5" Y="0.75" Width="1.5" />
+    <Position X="11.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Characteristics\ICharacteristic.cs</FileName>
