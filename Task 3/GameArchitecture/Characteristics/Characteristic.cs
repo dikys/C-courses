@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace GameArchitecture.Characteristics
 {
-    public abstract class Characteristic<T> : ICharacteristic
+    public abstract class Characteristic<TValue> : ICharacteristic
     {
         public string Name { private set; get; }
         public string Description { private set; get; }
         
-        public T Value { set; get; }
+        public TValue Value { set; get; }
 
         public abstract void Update(double dt);
     }
