@@ -10,12 +10,13 @@ using GameArchitecture.Characteristics;
 
 namespace GameArchitecture.SpellEffects
 {
-    public interface ISpellEffect : IUpdatableObject
+    public interface ISpellEffect
     {
         void Apply(ICharacter character);
 
         void DoEffect(ICharacteristic[] characteristics);
+        void CleanEffect(ICharacteristic[] characteristics);
 
-        bool IsEnded();
+        bool IsActive { get; }
     }
 }

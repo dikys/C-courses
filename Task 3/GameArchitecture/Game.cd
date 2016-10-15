@@ -9,9 +9,9 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="GameArchitecture.SpellEffects.SpellEffect">
-    <Position X="7.75" Y="2.5" Width="1.5" />
+    <Position X="6" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAEAAAABAiBAAAAAAAAAQAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAEAAAABAiBAAAEAAAAAQAAAAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>SpellEffects\SpellEffect.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -54,6 +54,14 @@
       <FileName>Spells\SpellOnTarget.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="GameArchitecture.SpellEffects.PassiveSpellEffect">
+    <Position X="7.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAABAgAAAAEAAAAAQAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>SpellEffects\PassiveSpellEffect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="GameArchitecture.Spells.ISpell" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
@@ -62,9 +70,9 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="GameArchitecture.SpellEffects.ISpellEffect">
-    <Position X="6" Y="2" Width="1.5" />
+    <Position X="4.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAABAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAEAAAABAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>SpellEffects\ISpellEffect.cs</FileName>
     </TypeIdentifier>
   </Interface>

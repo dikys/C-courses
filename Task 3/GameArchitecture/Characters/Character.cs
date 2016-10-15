@@ -34,7 +34,8 @@ namespace GameArchitecture.Characters
         }
         public ISpell[] Spells { private set; get; }
 
-        public List<ISpellEffect> AppliedEffects { private set; get; }
+        public List<SpellEffect> AppliedEffects { private set; get; }
+        public List<PassiveSpellEffect> AppliedPassiveEffects { private set; get; }
 
         public void Update(double dt)
         {
@@ -46,11 +47,18 @@ namespace GameArchitecture.Characters
             {
                 AppliedEffects[i].Update(dt);
 
-                if (AppliedEffects[i].IsEnded())
+                if (!AppliedEffects[i].IsActive)
                 {
                     AppliedEffects.RemoveAt(i);
 
                     i--;
+                }
+            }
+            for (int i = 0; i < AppliedPassiveEffects.Count; i++)
+            {
+                if (!AppliedPassiveEffects[i].IsActive)
+                {
+                    AppliedPassiveEffects.RemoveAt(i);
                 }
             }
         }
