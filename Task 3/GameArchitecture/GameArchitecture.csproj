@@ -52,6 +52,7 @@
     <Compile Include="Spells\Spell.cs" />
     <Compile Include="Spells\SpellOnMySelf.cs" />
     <Compile Include="Spells\SpellOnTarget.cs" />
+    <Compile Include="Spells\SpellOnTargets.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Characteristics\Characteristic.cd" />
