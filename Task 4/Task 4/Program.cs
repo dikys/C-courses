@@ -10,22 +10,8 @@ namespace Task_4
 {
     class Program
     {
-        public static int Com(List<int> list)
-        {
-            return list.Select(x => x * x).First(x => x > 6);
-        }
-
         static void Main(string[] args)
         {
-            StorageId storage = new StorageId();
-            storage.CreateObject<int>();
-            storage.CreateObject<int>();
-            storage.CreateObject<int>();
-            storage.CreateObject<double>();
-            storage.CreateObject<double>();
-
-            storage.PrintAllGroupsObjects();
-            
         }
     }
 }

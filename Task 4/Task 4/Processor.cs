@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace Task_4
 {
-    public static class Processor
+    public static class ProcessorBuilder
     {
-        public static Processor<TEngine> CreateEngine<TEngine>()
+        public static ProcessorBuilderWithEngine<TEngine> CreateEngine<TEngine>()
         {
-            return new Processor<TEngine>();
+            return new ProcessorBuilderWithEngine<TEngine>();
         }
     }
-    public class Processor<TEngine>
+    public class ProcessorBuilderWithEngine<TEngine>
     {
-        public Processor<TEngine, TEntity> For<TEntity>()
+        public ProcessorBuilderWithEngineAndEntity<TEngine, TEntity> For<TEntity>()
         {
-            return new Processor<TEngine,TEntity>();
+            return new ProcessorBuilderWithEngineAndEntity<TEngine,TEntity>();
         }
     }
-    public class Processor<TEngine, TEntity>
+    public class ProcessorBuilderWithEngineAndEntity<TEngine, TEntity>
     {
         public Processor<TEngine, TEntity, TLogger> With<TLogger>()
         {

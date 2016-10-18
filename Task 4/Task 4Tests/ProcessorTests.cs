@@ -14,7 +14,7 @@ namespace Task_4.Tests
         [TestMethod]
         public void Should_SameType_When_CreateProcessor()
         {
-            var processor = Processor.CreateEngine<int>().For<double>().With<char>();
+            var processor = ProcessorBuilder.CreateEngine<int>().For<double>().With<char>();
 
             Assert.IsTrue(processor is Processor<int, double, char>);
         }

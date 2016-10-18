@@ -14,7 +14,7 @@ namespace Task_4
             List<Guid> Guids { get; }
         }
 
-        private class GroupObjects<TObject> : IGroupObjects
+        private class GroupObjects<TObjects> : IGroupObjects
         {
             private List<Guid> guids;
             public List<Guid> Guids
@@ -73,17 +73,25 @@ namespace Task_4
         }
 
 
-        public void PrintAllGroupsObjects()
+        public Dictionary<Guid, TObject> GetGroupObjects<TObject>()
         {
+            var result = new Dictionary<Guid, TObject>();
+
             foreach (var groupObjects in this.groupsObjectes)
             {
-                Console.WriteLine("Объекты типа " + groupObjects.GetType() + ":");
-
+                if (!(groupObjects is GroupObjects<TObject>))
+                    continue;
+                
                 foreach (var guid in groupObjects.Guids)
                 {
-                    Console.WriteLine("\t ( {0}, {1} )", guid, this.objects[this.indexes[guid]].ToString());
+                    result.Add(guid, (TObject)this.objects[this.indexes[guid]]);
                 }
             }
+
+            if (result.Count() == 0)
+                throw new TypeAccessException("Group objects with type TObject not find!");
+
+            return result;
         }
 
         public Object GetObjectForGuid(Guid guid)

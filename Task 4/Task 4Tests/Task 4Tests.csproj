@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="ProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StorageIdTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Task 4\Task 4.csproj">
