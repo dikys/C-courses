@@ -48,12 +48,12 @@ namespace Task_4
             this.objects.Add(newObject);
             this.indexes.Add(newGuid, this.objects.Count - 1);
 
-            bool IsNewType = true;
+            bool isNewType = true;
             for (var i = 0; i < this.groupsObjectes.Count; i++)
             {
                 if (this.groupsObjectes[i] is GroupObjects<TObject>)
                 {
-                    IsNewType = false;
+                    isNewType = false;
 
                     this.groupsObjectes[i].Guids.Add(newGuid);
 
@@ -61,7 +61,7 @@ namespace Task_4
                 }
             }
 
-            if (IsNewType)
+            if (isNewType)
             {
                 var groupObjects = new GroupObjects<TObject>();
                 groupObjects.Guids.Add(newGuid);
