@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="GameArchitecture.Characters.Character">
-    <Position X="9.75" Y="2.25" Width="1.5" />
+    <Position X="9.5" Y="2.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAgAAAACACAAAQAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAgAAAACACAAAQAAAAAAIAAAAAAAAAQAAA=</HashCode>
       <FileName>Characters\Character.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -77,7 +77,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="GameArchitecture.Characters.ICharacter" Collapsed="true">
-    <Position X="9.75" Y="1.25" Width="1.5" />
+    <Position X="9.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Characters\ICharacter.cs</FileName>

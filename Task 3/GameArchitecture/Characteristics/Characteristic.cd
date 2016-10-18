@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="GameArchitecture.Characteristics.Characteristic&lt;T&gt;">
-    <Position X="0.5" Y="1.75" Width="1.5" />
+  <Class Name="GameArchitecture.Characteristics.Characteristic&lt;TValue&gt;">
+    <Position X="0.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Characteristics\Characteristic.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
