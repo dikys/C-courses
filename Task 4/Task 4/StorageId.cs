@@ -7,27 +7,27 @@ using System.Threading.Tasks;
 
 namespace Task_4
 {
-    public interface IGroupObjects
-    {
-        List<Guid> Guids { get; }
-    }
-
-    public class GroupObjects<TObject> : IGroupObjects
-    {
-        private List<Guid> guids;
-        public List<Guid> Guids
-        {
-            get { return this.guids; }
-        }
-
-        public GroupObjects()
-        {
-            this.guids = new List<Guid>();
-        } 
-    }
-
     public class StorageId
     {
+        private interface IGroupObjects
+        {
+            List<Guid> Guids { get; }
+        }
+
+        private class GroupObjects<TObject> : IGroupObjects
+        {
+            private List<Guid> guids;
+            public List<Guid> Guids
+            {
+                get { return this.guids; }
+            }
+
+            public GroupObjects()
+            {
+                this.guids = new List<Guid>();
+            }
+        }
+
         private Dictionary<Guid, int> indexes;
         private ArrayList objects;
         private List<IGroupObjects> groupsObjectes;
