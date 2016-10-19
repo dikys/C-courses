@@ -75,23 +75,22 @@ namespace Task_4
 
         public Dictionary<Guid, TObject> GetGroupObjects<TObject>()
         {
-            var result = new Dictionary<Guid, TObject>();
-
             foreach (var groupObjects in this.groupsObjectes)
             {
                 if (!(groupObjects is GroupObjects<TObject>))
                     continue;
-                
+
+                var result = new Dictionary<Guid, TObject>();
+
                 foreach (var guid in groupObjects.Guids)
                 {
                     result.Add(guid, (TObject)this.objects[this.indexes[guid]]);
                 }
+
+                return result;
             }
 
-            if (result.Count() == 0)
-                throw new TypeAccessException("Group objects with type TObject not find!");
-
-            return result;
+            throw new TypeAccessException("Group objects with type TObject not find!");
         }
 
         public Object GetObjectForGuid(Guid guid)
