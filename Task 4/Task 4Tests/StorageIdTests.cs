@@ -31,7 +31,7 @@ namespace Task_4.Tests
         {
             var storage = CreateBasicStorageId();
 
-            storage.GetGroupObjects<string>();
+            storage.GetGroupObjects<float>();
         }
 
         [TestMethod]

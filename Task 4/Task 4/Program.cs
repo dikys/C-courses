@@ -12,6 +12,10 @@ namespace Task_4
     {
         static void Main(string[] args)
         {
+            Object l = new Object();
+            Object s = new Object();
+
+            Console.WriteLine(l.GetType());
         }
     }
 }
