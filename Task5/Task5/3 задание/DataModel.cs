@@ -27,6 +27,7 @@ namespace Task5
         public DataModel()
         {
             this.table = new List<List<TValue>>();
+            this.observers = new List<IObserver<TValue>>();
         }
 
         public void Put(int row, int column, TValue value)
