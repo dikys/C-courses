@@ -1,71 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Task5
 {
-    /*public class DataModel<TElement> : IObservable<TElement>
+    public interface IObserver<TValue>
     {
-        private List<IObserver<TElement>> observers;
-
-        public IDisposable Subscribe(IObserver<TElement> observer)
-        {
-            if (!this.observers.Contains(observer))
-            {
-                this.observers.Add(observer);
-            }
-
-            return new Unsubscriber(observers, observer);
-        }
-
-        private class Unsubscriber : IDisposable
-        {
-            private List<IObserver<TElement>> observers;
-            private IObserver<TElement> observer;
-
-            public Unsubscriber(List<IObserver<TElement>> observers, IObserver<TElement> observer)
-            {
-                this.observers = observers;
-                this.observer = observer;
-            }
-
-            public void Dispose()
-            {
-                if (this.observer != null && this.observers.Contains(this.observer))
-                {
-                    this.observers.Remove(this.observer);
-                }
-            }
-        }
+        void PutEvent(int row, int column, TValue value);
+        void InsertRowEvent(int rowIndex);
+        void InsertColumnEvent(int columnIndex);
     }
 
-    public class ElementOfDataModel<TValue> : IObserver<TValue>
-    {
-        public TValue Value { get; private set; }
-
-        public void OnNext(TValue value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnError(Exception error)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnCompleted()
-        {
-            throw new NotImplementedException();
-        }
-    }*/
-
     public class DataModel<TValue>
+        where TValue: new()
     {
-        private List<List<TValue> table;
+        private List<List<TValue>> table;
+
         public int CountRow { get; private set; }
         public int CountColumn { get; private set; }
+
+        private List<IObserver<TValue>> observers;
 
         public DataModel()
         {
@@ -74,7 +31,17 @@ namespace Task5
 
         public void Put(int row, int column, TValue value)
         {
+            if (row < 0 || this.CountRow - 1 < row || column < 0 || this.CountColumn - 1 < column)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
             this.table[row][column] = value;
+
+            foreach (var observer in observers)
+            {
+                observer.PutEvent(row, column, value);
+            }
         }
 
         public void InsertRow(int rowIndex)
@@ -88,13 +55,17 @@ namespace Task5
             
             for (var i = 0; i < this.CountColumn; i++)
             {
-                // ТУТ ElementOfDataModel
                 newRow.Add(new TValue());
             }
 
             this.table.Insert(rowIndex, newRow);
 
             this.CountRow ++;
+
+            foreach (var observer in observers)
+            {
+                observer.InsertRowEvent(rowIndex);
+            }
         }
 
         public void InsertColumn(int columnIndex)
@@ -110,6 +81,11 @@ namespace Task5
             }
 
             this.CountColumn ++;
+
+            foreach (var observer in observers)
+            {
+                observer.InsertColumnEvent(columnIndex);
+            }
         }
 
         public TValue Get(int row, int column)
@@ -121,6 +97,26 @@ namespace Task5
             }   
             
             return this.table[row][column];
+        }
+
+        public void AddObserver(IObserver<TValue> observer)
+        {
+            if (this.observers.Contains(observer))
+            {
+                throw new ArgumentException("Этот observer уже в списке.");
+            }
+
+            this.observers.Add(observer);
+        }
+
+        public void RemoveObserver(IObserver<TValue> observer)
+        {
+            if (!this.observers.Contains(observer))
+            {
+                throw new ArgumentException("Этого observer нет в списке.");
+            }
+
+            this.observers.Remove(observer);
         }
     }
 }
