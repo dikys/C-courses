@@ -45,7 +45,7 @@ namespace Task_4
         {
             var result = new Dictionary<Guid, TObject>();
 
-            var objectsType = new TObject().GetType();
+            var objectsType = typeof(TObject);
 
             if (!this.groupObjects.ContainsKey(objectsType))
                 throw new TypeAccessException("Type is not exists!");
