@@ -29,9 +29,9 @@ namespace ComputerAlgebra
                 return base.VisitMethodCall(expression);
             }
 
-            var body = expression.Arguments[0];
+            var expressionBody = expression.Arguments[0];
 
-            switch (body.NodeType)
+            switch (expressionBody.NodeType)
             {
                 case ExpressionType.Constant:
                     return VisitConstant(Expression.Constant(0.0, typeof(double)));
@@ -41,17 +41,17 @@ namespace ComputerAlgebra
 
                 case ExpressionType.Add:
                 case ExpressionType.Subtract:
-                    BinaryExpression operation = (BinaryExpression)body;
+                    BinaryExpression operation = (BinaryExpression)expressionBody;
 
                     return VisitBinary(
-                        Expression.MakeBinary(body.NodeType,
+                        Expression.MakeBinary(expressionBody.NodeType,
                             Expression.Call(Differentiator.diffInfo,
                                 operation.Left),
                             Expression.Call(Differentiator.diffInfo,
                                 operation.Right)));
 
                 case ExpressionType.Multiply:
-                    BinaryExpression multiply = (BinaryExpression)body;
+                    BinaryExpression multiply = (BinaryExpression)expressionBody;
 
                     return VisitBinary(
                         Expression.MakeBinary(ExpressionType.Add,
@@ -63,7 +63,7 @@ namespace ComputerAlgebra
                                 Expression.Call(Differentiator.diffInfo, multiply.Right))));
 
                 case ExpressionType.Call:
-                    MethodCallExpression method = (MethodCallExpression)body;
+                    MethodCallExpression method = (MethodCallExpression)expressionBody;
 
                     if (method.Method == ((Func<double, double>)Math.Sin).Method)
                     {
