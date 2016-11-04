@@ -29,7 +29,7 @@ namespace Application
 
             List<IPlugin> plugins = typesOfPlugins.Select(
                 type =>
-                    (IPlugin) type.InitilizateUsingEmptyConstructor())
+                    (IPlugin) Activator.CreateInstance(type))
                 .ToList();
 
             plugins.ForEach(plugin => Console.WriteLine(plugin.Name));

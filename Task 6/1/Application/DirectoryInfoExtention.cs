@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Application
 {
-    public static class DirectoryInfoExpansion
+    public static class DirectoryInfoExtention
     {
         public static List<FileInfo> GetAllDllFiles(this DirectoryInfo directory)
         {

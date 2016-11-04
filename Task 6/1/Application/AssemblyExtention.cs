@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Application
 {
-    public static class AssemblyExpansion
+    public static class AssemblyExtention
     {
         public static List<Type> GetTypesWithInterface(this Assembly assembly, Type interfaceType)
         {

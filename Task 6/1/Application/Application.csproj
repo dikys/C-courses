@@ -43,11 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyExpansion.cs" />
-    <Compile Include="DirectoryInfoExpansion.cs" />
+    <Compile Include="AssemblyExtention.cs" />
+    <Compile Include="DirectoryInfoExtention.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TypeExpansion.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -43,8 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Differentiator.cs" />
-    <Compile Include="ExpressionExpansion.cs" />
+    <Compile Include="DifferentiatorVisitor.cs" />
+    <Compile Include="ExpressionExtention.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
