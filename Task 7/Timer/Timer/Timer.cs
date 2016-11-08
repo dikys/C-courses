@@ -9,7 +9,7 @@ namespace Timer
 
         public long ElapsedMilliseconds
         {
-            get { return this.stopwatch.ElapsedTicks; }
+            get { return this.stopwatch.ElapsedMilliseconds; }
         }
 
         public Timer()
