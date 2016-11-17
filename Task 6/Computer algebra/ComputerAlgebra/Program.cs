@@ -7,7 +7,7 @@ namespace ComputerAlgebra
     {
         static void Main(string[] args)
         {
-            Expression<Func<double, double>> f = x => x - x * 3 + Math.Sin(3 * x) + Math.Abs(10 * x);
+            Expression<Func<double, double>> f = x => x*x*x;
             Console.WriteLine(f.ToString());
 
             Expression<Func<double, double>> df = f.Differentiate();
