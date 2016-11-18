@@ -53,7 +53,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReadCsvTest.cs" />
+    <Compile Include="ReadCsv1Test.cs" />
+    <Compile Include="ReadCsv2Test.cs" />
+    <Compile Include="ReadCsv3Test.cs" />
+    <Compile Include="ReadCsv4Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Task 8\Task 8.csproj">

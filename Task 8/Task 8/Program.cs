@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
+using System.Dynamic;
 
 namespace Task_8
 {
@@ -16,13 +16,13 @@ namespace Task_8
 
                 while ((line = stream.ReadLine()) != null)
                 {
-                    yield return line.Split(',')
+                    yield return line.Replace("\"", "")
+                        .Split(',')
                         .Select(str => str == "NA" ? null : str)
                         .ToArray();
                 }
 
                 stream.Close();
-                yield break;
             }
         }
         
@@ -32,36 +32,61 @@ namespace Task_8
             var fieldNames = lines.First();
 
             lines = lines.Skip(1);
-
-            //foreach (var line in lines)
-            //{
-            //    yield return new IEnumerable<T>();
-            //}
-
+            
             yield break;
+        }
+
+        public static IEnumerable<Dictionary<string, object>> ReadCsv3(string fileName)
+        {
+            var lines = ReadCsv1(fileName);
+            var fieldNames = lines.First();
+
+            lines = lines.Skip(1);
+
+            foreach (var line in lines)
+            {
+                var result = new Dictionary<string, object>();
+                
+                for (var i = 0; i < line.Length; i++)
+                    result.Add(fieldNames[i], line[i]);
+
+                yield return result;
+            }
+        }
+
+        public static IEnumerable<dynamic> ReadCsv4(string fileName)
+        {
+            foreach (var element in ReadCsv3(fileName))
+            {
+                dynamic result = new ExpandoObject();
+                var dictionary = (IDictionary<string, object>) result;
+
+                foreach (var propery in element)
+                {
+                    dictionary[propery.Key] = propery.Value;
+                }
+
+                yield return result;
+            }
         }
 
         static void Main(string[] args)
         {
-            /*foreach (var str in ReadCsv1("airquality.csv"))
-            {
-                foreach (var element in str)
-                {
-                    Console.Write(element + ", ");
-                }
+            //foreach (var str in ReadCsv1("airquality.csv"))
+            //{
+            //    foreach (var element in str)
+            //    {
+            //        Console.Write(element + ", ");
+            //    }
 
-                Console.WriteLine();
-            }*/
+            //    Console.WriteLine();
+            //}
 
-            //var a = new { Id = 3, Speed = 3 };
-            //dynamic a = new 
+            //Program.ReadCsv4("airquality.csv").Where(z => z.Ozone > 10).Select(z => z.Wind).ToList().ForEach(z => Console.WriteLine(z.Name));
 
-            foreach(var property in a.GetType().GetProperties())
-            {
-                Console.WriteLine("{0} = {1}", property.Name, property.GetValue(a));
-            }
+            //Program.ReadCsv4("airquality.csv").ToList().ForEach(z => Console.WriteLine(z.Ozone));
 
-            Console.WriteLine(a.GetType());
+            Console.WriteLine();
         }
     }
 }

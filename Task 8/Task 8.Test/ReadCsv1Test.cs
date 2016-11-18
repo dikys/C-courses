@@ -6,10 +6,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Task_8.Test
 {
     [TestClass]
-    public class ReadCsvTest
+    public class ReadCsv1Test
     {
         [TestMethod]
-        public void Should_ReturnTypeIEnumerableStringArray_When_UseReadCsv1()
+        public void Should_ReturnTypeIEnumerableOfStringArray()
         {
             Assert.IsTrue(Program.ReadCsv1("airquality.csv") is IEnumerable<string[]>);
         }
