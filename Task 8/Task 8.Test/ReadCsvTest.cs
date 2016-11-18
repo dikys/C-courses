@@ -17,9 +17,9 @@ namespace Task_8.Test
         [TestMethod]
         public void Should_Null_When_NA()
         {
-            var stream = Program.ReadCsv1("airquality.csv");
+            var lines = Program.ReadCsv1("airquality.csv");
 
-            var line = stream.ElementAt(5);
+            var line = lines.ElementAt(5);
 
             Assert.AreEqual(null, line[1]);
             Assert.AreEqual(null, line[2]);
