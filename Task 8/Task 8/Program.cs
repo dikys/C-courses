@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace Task_8
 {
@@ -25,23 +26,24 @@ namespace Task_8
             }
         }
         
-        /*public static IEnumerable<T> ReadCsv2<T>(string fileName)
+        public static IEnumerable<T> ReadCsv2<T>(string fileName)
         {
-            var file = ReadCsv1(fileName);
+            var lines = ReadCsv1(fileName);
+            var fieldNames = lines.First();
 
-            var fields = file.First();
+            lines = lines.Skip(1);
 
-            var lines = file.Skip(1);
+            //foreach (var line in lines)
+            //{
+            //    yield return new IEnumerable<T>();
+            //}
 
-            foreach (var line in lines)
-            {
-                
-            }
-        }*/
+            yield break;
+        }
 
         static void Main(string[] args)
         {
-            foreach (var str in ReadCsv1("airquality.csv"))
+            /*foreach (var str in ReadCsv1("airquality.csv"))
             {
                 foreach (var element in str)
                 {
@@ -49,7 +51,17 @@ namespace Task_8
                 }
 
                 Console.WriteLine();
+            }*/
+
+            //var a = new { Id = 3, Speed = 3 };
+            //dynamic a = new 
+
+            foreach(var property in a.GetType().GetProperties())
+            {
+                Console.WriteLine("{0} = {1}", property.Name, property.GetValue(a));
             }
+
+            Console.WriteLine(a.GetType());
         }
     }
 }
