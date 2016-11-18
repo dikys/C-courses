@@ -15,7 +15,7 @@ namespace Task_8.Test
         }
 
         [TestMethod]
-        public void Should_Null_When_StringEqualNA()
+        public void Should_Null_When_NA()
         {
             var stream = Program.ReadCsv1("airquality.csv");
 

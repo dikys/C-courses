@@ -11,24 +11,20 @@ namespace Task_8
         {
             using (var stream = new StreamReader(fileName))
             {
-                while (true)
-                {
-                    var strings = stream.ReadLine();
+                string line;
 
-                    if (strings == null)
-                    {
-                        stream.Close();
-                        yield break;
-                    }
-                    
-                    yield return strings.Split(',')
+                while ((line = stream.ReadLine()) != null)
+                {
+                    yield return line.Split(',')
                         .Select(str => str == "NA" ? null : str)
                         .ToArray();
                 }
+
+                stream.Close();
+                yield break;
             }
         }
-
-        #region Сюда не смотреть
+        
         /*public static IEnumerable<T> ReadCsv2<T>(string fileName)
         {
             var file = ReadCsv1(fileName);
@@ -42,7 +38,6 @@ namespace Task_8
                 
             }
         }*/
-        #endregion
 
         static void Main(string[] args)
         {
