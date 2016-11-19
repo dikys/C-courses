@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Dynamic;
+using System.Globalization;
+using System.Reflection;
 
 namespace Task_8
 {
@@ -28,11 +31,62 @@ namespace Task_8
         
         public static IEnumerable<T> ReadCsv2<T>(string fileName)
         {
-            var lines = ReadCsv1(fileName);
-            var fieldNames = lines.First();
-
-            lines = lines.Skip(1);
+            var fieldNames = new string[]
+            {
+                "Name",
+                "Ozone",
+                "Solar.R",
+                "Wind",
+                "Temp",
+                "Month",
+                "Day"
+            };
+            var fieldTypes = new Type[]
+            {
+                typeof(string),
+                typeof(int?),
+                typeof(int?),
+                typeof(double),
+                typeof(int),
+                typeof(int),
+                typeof(int)
+            };
             
+            var allFieldsT = typeof(T).GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+
+            var fieldsInfo = new FieldInfo[fieldNames.Length];
+
+            for (var i = 0; i < fieldsInfo.Length; i++)
+            {
+                FieldInfo fieldInfo = allFieldsT.First(z => z.Name == fieldNames[i]);
+
+                if (fieldInfo == null)
+                {
+                    throw new ArgumentException("Type T have not field with Name = " + fieldNames[i]);
+                }
+
+                if (fieldInfo.FieldType != fieldTypes[i])
+                {
+                    throw new ArgumentException("Type T have not field with Name = " + fieldNames[i] + " and Type = " + fieldTypes[i]);
+                }
+
+                fieldsInfo[i] = fieldInfo;
+            }
+
+            var lines = ReadCsv3(fileName).Skip(1);
+
+            foreach (var line in lines)
+            {
+                T result = (T)Activator.CreateInstance(typeof(T));
+
+                for (var i = 0; i < fieldsInfo.Length; i++)
+                {
+                    fieldsInfo[i].SetValue(result, line[fieldNames[i]]);
+                }
+
+                yield return result;
+            }
+
             yield break;
         }
 
@@ -47,8 +101,13 @@ namespace Task_8
             {
                 var result = new Dictionary<string, object>();
                 
-                for (var i = 0; i < line.Length; i++)
-                    result.Add(fieldNames[i], line[i]);
+                result.Add(fieldNames[0], line[0]);
+                result.Add(fieldNames[1], line[1] == null ? (int?)null : Int32.Parse(line[1]));
+                result.Add(fieldNames[2], line[2] == null ? (int?)null : Int32.Parse(line[2]));
+                result.Add(fieldNames[3], Double.Parse(line[3], CultureInfo.InvariantCulture));
+                result.Add(fieldNames[4], Int32.Parse(line[4]));
+                result.Add(fieldNames[5], Int32.Parse(line[5]));
+                result.Add(fieldNames[6], Int32.Parse(line[6]));
 
                 yield return result;
             }
@@ -82,11 +141,8 @@ namespace Task_8
             //    Console.WriteLine();
             //}
 
-            //Program.ReadCsv4("airquality.csv").Where(z => z.Ozone > 10).Select(z => z.Wind).ToList().ForEach(z => Console.WriteLine(z.Name));
-
-            //Program.ReadCsv4("airquality.csv").ToList().ForEach(z => Console.WriteLine(z.Ozone));
-
-            Console.WriteLine();
+            //var a = Program.ReadCsv4("airquality.csv").ElementAt(4);
+            //Console.WriteLine(a);
         }
     }
 }

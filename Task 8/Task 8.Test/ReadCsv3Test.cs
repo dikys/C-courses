@@ -22,10 +22,10 @@ namespace Task_8.Test
             Assert.AreEqual("Sensor5", sensor5["Name"]);
             Assert.AreEqual(null, sensor5["Ozone"]);
             Assert.AreEqual(null, sensor5["Solar.R"]);
-            Assert.AreEqual("14.3", sensor5["Wind"]);
-            Assert.AreEqual("56", sensor5["Temp"]);
-            Assert.AreEqual("5", sensor5["Month"]);
-            Assert.AreEqual("5", sensor5["Day"]);
+            Assert.AreEqual(14.3, sensor5["Wind"]);
+            Assert.AreEqual(56, sensor5["Temp"]);
+            Assert.AreEqual(5, sensor5["Month"]);
+            Assert.AreEqual(5, sensor5["Day"]);
         }
     }
 }
