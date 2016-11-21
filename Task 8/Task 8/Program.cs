@@ -73,7 +73,7 @@ namespace Task_8
                 fieldsInfo[i] = fieldInfo;
             }
 
-            var lines = ReadCsv3(fileName).Skip(1);
+            var lines = ReadCsv3(fileName);
 
             foreach (var line in lines)
             {
@@ -140,9 +140,6 @@ namespace Task_8
 
             //    Console.WriteLine();
             //}
-
-            //var a = Program.ReadCsv4("airquality.csv").ElementAt(4);
-            //Console.WriteLine(a);
         }
     }
 }
